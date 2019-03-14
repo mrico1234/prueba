@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  branch: MyString
+  code: MyString
+  start_preparation: MyString
+  delivery_time: MyString
+  delivery_method: MyString
+  delivery_method: MyString
+  cash_payment: MyString
+  subtotal: 1.5
+  taxes: 1.5
+  total: 1.5
+  status: MyString
+
+two:
+  branch: MyString
+  code: MyString
+  start_preparation: MyString
+  delivery_time: MyString
+  delivery_method: MyString
+  delivery_method: MyString
+  cash_payment: MyString
+  subtotal: 1.5
+  taxes: 1.5
+  total: 1.5
+  status: MyString
