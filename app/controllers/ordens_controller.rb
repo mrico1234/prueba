@@ -15,6 +15,7 @@ class OrdensController < ApplicationController
   # GET /ordens/new
   def new
     @orden = Orden.new
+    @clients = Client.all#Permite tener acceso a las categorias atraves del formulario de articles.
   end
 
   # GET /ordens/1/edit
@@ -25,6 +26,7 @@ class OrdensController < ApplicationController
   # POST /ordens.json
   def create
     @orden = Orden.new(orden_params)
+    @orden.clients = params[:clients]
 
     respond_to do |format|
       if @orden.save
@@ -69,6 +71,6 @@ class OrdensController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orden_params
-      params.require(:orden).permit(:branch, :code, :start_preparation, :delivery_time, :delivery_method, :delivery_method, :cash_payment, :subtotal, :taxes, :total, :status)
+      params.require(:orden).permit(:branch, :code, :start_preparation, :delivery_time, :delivery_method, :delivery_method, :cash_payment, :subtotal, :taxes, :total, :status, :clients)
     end
 end

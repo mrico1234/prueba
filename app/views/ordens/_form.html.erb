@@ -66,6 +66,16 @@
     <%= form.text_field :status, id: :orden_status %>
   </div>
 
+
+  <div class="field">
+    <%= form.label :Cliente %>
+    <% @clients.each do |client| %>
+      <div>
+        <%= check_box_tag "clients[]", client.id %> <%= client.name %>
+      </div>
+    <%end%>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
