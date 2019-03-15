@@ -1,21 +1,18 @@
 class OrdensController < ApplicationController
   before_action :set_orden, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /ordens
   # GET /ordens.json
   def index
     @ordens = Orden.all
+    render json: @ordens
   end
 
   # GET /ordens/1
   # GET /ordens/1.json
   def show
-  end
-
-  # GET /ordens/new
-  def new
-    @orden = Orden.new
-    @clients = Client.all#Permite tener acceso a las categorias atraves del formulario de articles.
+    render json: @orden
   end
 
   # GET /ordens/1/edit
@@ -24,43 +21,32 @@ class OrdensController < ApplicationController
 
   # POST /ordens
   # POST /ordens.json
+    
   def create
     @orden = Orden.new(orden_params)
     @orden.clients = params[:clients]
 
-    respond_to do |format|
-      if @orden.save
-        format.html { redirect_to @orden, notice: 'Orden was successfully created.' }
-        format.json { render :show, status: :created, location: @orden }
-      else
-        format.html { render :new }
-        format.json { render json: @orden.errors, status: :unprocessable_entity }
-      end
+    if @orden.save
+      render json: @orden, status: :created, location: @orden
+    else
+      render json: @orden.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /ordens/1
   # PATCH/PUT /ordens/1.json
   def update
-    respond_to do |format|
-      if @orden.update(orden_params)
-        format.html { redirect_to @orden, notice: 'Orden was successfully updated.' }
-        format.json { render :show, status: :ok, location: @orden }
-      else
-        format.html { render :edit }
-        format.json { render json: @orden.errors, status: :unprocessable_entity }
-      end
+    if @orden.update(orden_params)
+      render json: @orden
+    else
+      render json: @orden.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /ordens/1
   # DELETE /ordens/1.json
   def destroy
-    @orden.destroy
-    respond_to do |format|
-      format.html { redirect_to ordens_url, notice: 'Orden was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    orden@client.destroy
   end
 
   private
