@@ -57,6 +57,6 @@ class OrdensController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orden_params
-      params.require(:orden).permit(:branch, :code, :start_preparation, :delivery_time, :delivery_method, :delivery_method, :cash_payment, :subtotal, :taxes, :total, :status, :clients)
+      params.permit(:branch, :code, :start_preparation, :delivery_time, :delivery_method, :delivery_method, :cash_payment, :subtotal, :taxes, :total, :status, :clients)
     end
 end
