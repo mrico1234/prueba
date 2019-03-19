@@ -1,4 +1,4 @@
-class OrdensController < ApplicationController
+class OrdensController < ApiController
   before_action :set_orden, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
 

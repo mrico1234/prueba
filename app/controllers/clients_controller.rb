@@ -1,4 +1,4 @@
-class ClientsController < ApplicationController
+class ClientsController < ApiController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
