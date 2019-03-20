@@ -15,13 +15,6 @@ class OrdensController < ApiController
     render json: @orden
   end
 
-  # GET /ordens/1/edit
-  def edit
-  end
-
-  # POST /ordens
-  # POST /ordens.json
-    
   def create
     @orden = Orden.new(orden_params)
     @orden.clients = params[:clients]

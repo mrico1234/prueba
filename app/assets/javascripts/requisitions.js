@@ -16,7 +16,7 @@ function traer(){
 	      //console.log(data)
 	      //alert(`Pedido numero: ${order.id}\nCódigo: ${order.code} status: ${order.status}`);
 	      console.log(data);	
-	      document.getElementById("parrafo").innerHTML += `<li>Pedido numero: ${order.id} Codigo: ${order.code} Estatus: ${order.status} Cliente: ${order.Cliente}</li>`;
+	      document.getElementById("parrafo").innerHTML += `<li>Pedido numero: ${order.id} Codigo: ${order.code} Estatus: ${order.status} Cliente: ${order.client_id}</li>`;
 	      
 
 	      
