@@ -20,7 +20,25 @@ function traer(){
 	request.send()
 }	
 
-function status(){
-	
-	
+function enviar() {
+		//	peticion ajax asincrona
+   	var id = $("#orden").val();
+		$.ajax({
+	    url : 'http://localhost:3000/ordens/'+id,
+	    data: {
+      	status: $("#status").val()
+      },
+	    type : 'PUT',
+	    dataType : 'json',
+	    success : function(data, status, response) {
+	      if(status === "success") {
+	      	alert(data.mensaje)
+	      }
+	    },
+	    error : function(data, xhr, status) {
+	    	console.log(data, xhr, status)
+	        alert(data.responseJSON.mensaje);
+	    }	 
+
+		});
 }	
