@@ -29,10 +29,24 @@ class OrdensController < ApiController
   # PATCH/PUT /ordens/1
   # PATCH/PUT /ordens/1.json
   def update
-    if @orden.update(orden_params)
-      render json: @orden
+    if !params[:status].blank?
+      mensaje  = ''
+      case params[:status]
+        when 'prepation'
+          @orden.may_run? ? @orden.run! : (mensaje = 'No puedes pasar a preparación')
+        when 'finished'
+          @orden.may_walk? ? @orden.walk! : (mensaje = 'No puedes finalizar la orden')
+        when 'canceled'
+          @orden.may_hold? ? @orden.hold! : (mensaje = 'No puedes anular la orden')
+        else mensaje = "Error en el valor del parametro"
+      end
+      if mensaje.blank?
+        return render json: { orden: @orden, mensaje: "Cambio de estado exitoso" }, status: :ok
+      else
+        return render json: { orden: @orden, mensaje: "#{mensaje}, o pasar al estado #{params[:status]} " }, status: :unprocessable_entity
+      end
     else
-      render json: @orden.errors, status: :unprocessable_entity
+      return render json: { mensaje: "Parametro status es obligatorio y no puede estar en blanco" }, status: :bad_request
     end
   end
 
